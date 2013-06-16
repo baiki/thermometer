@@ -12,7 +12,7 @@ ausgabedatei = 'data/messwerte_' + str(time.time()) + '.csv'
 try:
     datei = open(ausgabedatei, 'a')
 except:
-    print 'Dateizugriff nicht erfolgreich. Programm Abbruch.'
+    print 'File access failed. Programm terminated.'
     sys.exit(0)
 
 os.system('sudo modprobe w1-gpio')
@@ -40,7 +40,7 @@ def read_temp():
         return temp_c
 
 def signal_handler(signal, frame):
-    print '\nCTRL+C erhalten. Programm Abbruch.'
+    print '\nCTRL+C received. Programm terminated.'
     datei.close()
     sys.exit(0)
 
@@ -66,4 +66,3 @@ while True:
             count = 0
         old_temp_c = new_temp_c
         time.sleep(10)
-
