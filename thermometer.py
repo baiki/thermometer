@@ -3,11 +3,11 @@
 
 import os, glob, time, signal, sys
 
-version      = 0.53
+version      = 0.54
 new_temp_c   = 0.0
 old_temp_c   = 0.0
 count        = 0
-ausgabedatei = 'messwerte_' + str(time.time()) + '.csv'
+ausgabedatei = 'data/messwerte_' + str(time.time()) + '.csv'
 
 try:
     datei = open(ausgabedatei, 'a')
@@ -66,3 +66,4 @@ while True:
             count = 0
         old_temp_c = new_temp_c
         time.sleep(10)
+
