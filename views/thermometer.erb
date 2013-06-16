@@ -1,0 +1,68 @@
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="<%= link(:client) %>">Clients</a></li>
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Client Menu</li>
+              <li class="active"><a href="<%= link(:client_search) %>">Search</a></li>
+              <li><a href="<%= link(:client_create) %>">Create</a></li>
+              <li class="nav-header">Help</li>
+              <li>Here you can list, search, create and/or delete your client database</li>
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <div class="row-fluid">
+            <div class="span12 ">
+              <form class="form-inline well">
+                <input type="text" class="input-xlarge" placeholder="Not yet working...">
+                <button type="submit" class="btn btn-primary">Search</button>
+              </form>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12">
+              <table class="table table-bordered table-condensed">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Birthdate</th>
+                    <th>Gender</th>
+                    <th>Created at</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @clients.each do |client| %>
+                  <tr>
+                    <td><%= client.first_name %></td>
+                    <td><%= client.middle_name %></td>
+                    <td><%= client.last_name %></td>
+                    <td><%= client.birthdate %></td>
+                    <td><%= client.gender %></td>
+                    <td><%= client.created_at.strftime "%Y-%m-%d (%H:%M)" %></td>
+                    <td>
+                    <button class="btn btn-small" type="button">Change</button><br />
+                    <form action="<%= link(:client_delete) %>/<%= client.id %>" method="post" style="margin: 3px 0px 0px 0px !important;">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="submit" value="Delete" class="btn btn-mini btn-danger">
+                    </form>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
