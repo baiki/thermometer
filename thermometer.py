@@ -60,7 +60,7 @@ while True:
         print '(' + datum, zeit + ') ' + str(new_temp_c) + '°C'
         datei.write(datum + ',' + zeit + ',' + str(new_temp_c) + "\n")
         count += 1
-        if count >= 20:
+        if count >= 5:
             datei.close()
             datei = open(ausgabedatei, 'a')
             count = 0

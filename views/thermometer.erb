@@ -1,1 +1,14 @@
-    <p>---> thermometer.erb</p>
+    <table border="1">
+      <tr>
+        <td>Date</td>
+        <td align="right"><%= @temp_date %></td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td align="right"><%= @temp_time %></td>
+      </tr>
+      <tr>
+        <td>Temperature&nbsp;</td>
+        <td align="right"><%= @temp_celcius %>&#176;C</td>
+      </tr>
+    </table>
