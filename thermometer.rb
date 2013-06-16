@@ -1,18 +1,23 @@
 #!/usr/bin/env ruby
 
-# baiki 2013
+# baiki 2013-06-16
 
 %w[sinatra thin].each { |g| require g }
 
 configure do
-  enable :sessions
+  set :bind, '0.0.0.0'
   enable :logging
+  #enable :sessions #uncomment if not using Rack::Session::Cookie
+  use Rack::Session::Cookie, :key => 'rack.session',
+                             :path => '/',
+                             :expire_after => 43200,
+                             :secret => 'hH76Dvj90Lxb157aaPUw'
 end
 
 helpers do
   def link(name)
     case name
-    when :root then '/'
+    when :home then '/'
     when :thermometer then '/thermometer'
     when :logout then '/logout'
     else "/"
@@ -21,7 +26,7 @@ helpers do
 end
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.01'
+SOFTWARE_VERSION  = 'v0.02'
 
 before do
 end

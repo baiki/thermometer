@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title><%= SOFTWARE_NAME %> <%= SOFTWARE_VERSION %></title>
+    <title><%= SOFTWARE_NAME + ' ' + SOFTWARE_VERSION %></title>
     <meta name="author" content="Marco Baikhardt">
+    <link rel="shortcut icon" href="favicon.ico">
   </head>
   <body>
     <div>
+      <h1><%= SOFTWARE_NAME + ' ' + SOFTWARE_VERSION %></h1>
+      <a href="<%= link(:home) %>">Home</a><br />
       <a href="<%= link(:logout) %>">Logout</a>
-
-<%= yield %>
-
     </div>
+<%= yield %>
   </body>
 </html>
