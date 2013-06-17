@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 
-# baiki 2013-06-16
+# baiki 2013-06-17
 
 %w[sinatra thin].each { |g| require g }
 
 configure do
   set :bind, '0.0.0.0'
+  set :port, 1234
   enable :logging
   #enable :sessions #uncomment if not using Rack::Session::Cookie
   use Rack::Session::Cookie, :key => 'rack.session',
@@ -26,7 +27,7 @@ helpers do
 end
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.10'
+SOFTWARE_VERSION  = 'v0.12'
 
 before do
 end
@@ -40,6 +41,7 @@ end
 
 get '/thermometer' do
   actual_file = Dir.glob("data/*").max_by {|f| File.mtime(f)}
+  puts "-------> File in use: " + actual_file
   @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
   erb :thermometer
 end
