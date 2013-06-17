@@ -41,7 +41,6 @@ end
 
 get '/thermometer' do
   actual_file = Dir.glob("data/*").max_by {|f| File.mtime(f)}
-  puts "-------> File in use: " + actual_file
   @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
   erb :thermometer
 end
