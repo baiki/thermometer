@@ -4,15 +4,13 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title><%= SOFTWARE_NAME + ' ' + SOFTWARE_VERSION %></title>
-    <meta name="author" content="Marco Baikhardt">
+    <meta name="author" content="baiki">
     <link rel="shortcut icon" href="favicon.ico">
   </head>
   <body>
-    <div>
-      <h1><%= SOFTWARE_NAME + ' ' + SOFTWARE_VERSION %></h1>
-      <a href="<%= link(:home) %>">Home/Refresh</a><br />
-      <a href="<%= link(:logout) %>">Logout</a><br /><br />
-    </div>
+    <h1><%= SOFTWARE_NAME + ' ' + SOFTWARE_VERSION %></h1>
+    <a href="<%= link(:home) %>">Home/Refresh</a><br />
+    <a href="<%= link(:logout) %>">Logout</a><br /><br />
 <%= yield %>
   </body>
 </html>

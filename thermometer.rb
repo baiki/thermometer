@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# baiki 2013-06-17
+# baiki 2013-06-18
 
 %w[sinatra thin].each { |g| require g }
 
@@ -27,7 +27,7 @@ helpers do
 end
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.12'
+SOFTWARE_VERSION  = 'v0.13'
 
 before do
 end
@@ -47,6 +47,7 @@ end
 
 get '/logout' do
   session.clear
+  erb :logout
 end
 
 not_found do
