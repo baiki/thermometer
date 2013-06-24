@@ -62,6 +62,7 @@ while True:
     if new_temp_c >= 70.0:
         new_temp_c = old_temp_c
     if new_temp_c != old_temp_c:
+        #what about this one: if new_temp_c != old_temp_c and new_temp_c < 70.0:
         loctime = time.localtime()
         j, m, t, std, min, sec = loctime[0:6]
         datum = "{0:04d}.{1:02d}.{2:02d}".format(j, m, t)
