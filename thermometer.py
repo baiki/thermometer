@@ -10,7 +10,7 @@ as published by Sam Hocevar. See the COPYING file for more details.
 
 import os, glob, time, signal, sys
 
-version      = 0.55
+version      = 0.56
 new_temp_c   = 0.0
 old_temp_c   = 0.0
 count        = 0
@@ -59,6 +59,8 @@ print "(press CTRL+C to quit)\n"
 
 while True:
     new_temp_c = round(read_temp(), 1)
+    if new_temp_c >= 70.0:
+        new_temp_c = old_temp_c
     if new_temp_c != old_temp_c:
         loctime = time.localtime()
         j, m, t, std, min, sec = loctime[0:6]
