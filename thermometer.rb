@@ -32,7 +32,7 @@ helpers do
 end
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.13'
+SOFTWARE_VERSION  = 'v0.14'
 
 before do
 end

@@ -10,7 +10,7 @@ as published by Sam Hocevar. See the COPYING file for more details.
 
 import os, glob, time, signal, sys
 
-version      = 0.54
+version      = 0.55
 new_temp_c   = 0.0
 old_temp_c   = 0.0
 count        = 0
