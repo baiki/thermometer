@@ -1,4 +1,4 @@
-# Using Ruby 1.9.3p429 (mri)
+# Using ruby 1.9.3p194 (2012-04-20 revision 35410) [arm-linux-eabihf]
 
 source :rubygems
 
