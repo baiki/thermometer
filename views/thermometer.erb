@@ -1,18 +1,39 @@
-    <table border="1">
-      <tr>
-        <td>Date</td>
-        <td align="right"><%= @temp_date %></td>
-      </tr>
-      <tr>
-        <td>Time</td>
-        <td align="right"><%= @temp_time %></td>
-      </tr>
-      <tr>
-        <td>Temperature&nbsp;</td>
-        <td align="right"><b><%= @temp_celcius %>&#176;C</b></td>
-      </tr>
-      <tr>
-        <td>Location</td>
-        <td align="right">&nbsp;Chur, GR, Switzerland</td>
-      </tr>
-    </table>
+		<div id="main" class="wrapper clearfix">
+			<article>
+				<header>
+					<h1>Current Sensor Readouts</h1>
+					<p>This temperature sensor is located in the oldest city in Switzerland, called Chur. Elevation is about 680 meters above sea level (MAMSL)</p>
+					<table border="1">
+            <tr>
+              <td>&nbsp;Date (Gregorian)</td>
+              <td align="right">&nbsp;<%= @temp_date %>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;Time CET (UTC+01:00)</td>
+              <td align="right"><%= @temp_time %>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;Temperature (degree Celcius)&nbsp;</td>
+              <td align="right"><b><%= @temp_celcius %>&#176;C</b>&nbsp;</td>
+            </tr>
+          </table>
+          <p>The software will update this web page approximately every 3 minutes (sometimes faster).</p>
+          <hr>
+          <p>For a very short time, this device is accessible for all Internet users via www.chur.tk (but I guess you know that already).</p>
+				</header>
+				<!--
+				<section>
+					<h2>title</h2>
+					<p>Lorem ipsum</p>
+				</section>
+				<footer>
+					<h3>title</h3>
+					<p>Lorem ipsum</p>
+				</footer>
+				-->
+			</article>
+			<aside>
+				<h3>About This Project</h3>
+				<p>For this little fun project, I used a Raspberry Pi model B with 256 MB RAM, USB WLAN adapter, Raspbian Linux, Sinatra (based on Ruby) web framework and Python to get readings from the temperature sensor (DS18B20). Got questions, drop me a line at dot_baiki@yahoo.com</p>
+			</aside>
+		</div> <!-- #main -->
