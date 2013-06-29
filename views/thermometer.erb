@@ -5,7 +5,7 @@
 					<p>This temperature sensor is located in the oldest city in Switzerland, called Chur. Elevation is about 680 meters above sea level (MAMSL).</p>
 					<table border="1">
             <tr>
-              <td>&nbsp;Date (Gregorian)</td>
+              <td>&nbsp;Date (Gregorian, Y.M.D)</td>
               <td align="right">&nbsp;<%= @temp_date %>&nbsp;</td>
             </tr>
             <tr>
@@ -17,7 +17,7 @@
               <td align="right"><b><%= @temp_celcius %>&#176;C</b>&nbsp;</td>
             </tr>
           </table>
-          <p>The software will update this web page approximately every 3-5 minutes (sometimes faster). If you want to see older readings, then you can klick on <a href="<%= link(:chart) %>">chart</a>.</p>
+          <p>The software will update this web page approximately every 3-5 minutes (sometimes faster). If you want to see older readings, then you can click on <a href="<%= link(:chart) %>">chart</a>.</p>
 				</header>
 				<!--
 				<section>
