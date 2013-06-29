@@ -25,6 +25,7 @@ helpers do
     case name
     when :home then '/'
     when :thermometer then '/thermometer'
+    when :chart then '/chart'
     when :logout then '/logout'
     else "/"
     end
@@ -32,7 +33,7 @@ helpers do
 end
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.14'
+SOFTWARE_VERSION  = 'v0.15'
 
 before do
 end
@@ -45,9 +46,13 @@ get '/' do
 end
 
 get '/thermometer' do
-  actual_file = Dir.glob("data/*").max_by {|f| File.mtime(f)}
+  actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
   @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
   erb :thermometer
+end
+
+get '/chart' do
+  erb :chart
 end
 
 get '/logout' do
