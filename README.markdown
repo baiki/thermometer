@@ -6,13 +6,12 @@ Ingredients
 
 This project was realised using these cool tools:
 
-* Raspberry Pi
-* Digital temperature sensor
-* Raspbian Linux
+* Raspberry Pi (model B, 256 MB RAM)
+* Digital temperature sensor (DS18B20)
+* Raspbian Linux, bash, cron
 * Ruby, Sinatra, gruff 
 * Python
 * Initializr
-* Bash
 
 Feel free to help me with more cool stuff and better code.
 
