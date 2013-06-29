@@ -30,10 +30,15 @@ helpers do
     else "/"
     end
   end
+  
+  def get_readings
+    actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
+    @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
+  end
 end
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.15'
+SOFTWARE_VERSION  = 'v0.16'
 
 before do
 end
@@ -46,16 +51,17 @@ get '/' do
 end
 
 get '/thermometer' do
-  actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
-  @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
+  get_readings
   erb :thermometer
 end
 
 get '/chart' do
+  get_readings
   erb :chart
 end
 
 get '/logout' do
+  get_readings
   session.clear
   erb :logout
 end
