@@ -13,11 +13,11 @@ configure do
   set :bind, '0.0.0.0'
   set :port, 1234
   enable :logging
-  #enable :sessions #uncomment if not using Rack::Session::Cookie
-  use Rack::Session::Cookie, :key => 'rack.session',
-                             :path => '/',
-                             :expire_after => 43200,
-                             :secret => 'hH76Dvj90Lxb157aaPUw'
+  enable :sessions
+#  use Rack::Session::Cookie, :key => 'thermometer.session',
+#                             :path => '/',
+#                             :expire_after => 900,
+#                             :secret => 'hH76Dvj90Lxb157aaPUw'
 end
 
 helpers do
@@ -46,10 +46,6 @@ helpers do
     @auth ||=  Rack::Auth::Basic::Request.new(request.env)
     @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['1', '1']
   end
-  
-  def clear_access
-    #naja, irgendwie was löschen resetten header senden was weiss ich
-  end
 end
 
 SOFTWARE_NAME     = 'Thermometer'
@@ -77,7 +73,6 @@ end
 
 get '/logout' do
   get_readings
-  clear_access
   session.clear
   erb :logout
 end

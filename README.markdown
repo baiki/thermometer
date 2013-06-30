@@ -9,7 +9,8 @@ This project was realised using these cool tools:
 * Raspberry Pi (model B, 256 MB RAM)
 * Digital temperature sensor (DS18B20)
 * Raspbian Linux, bash, cron, screen
-* Ruby, Sinatra, gruff 
+* Ruby, Sinatra, gruff, data_mapper
+* SQLite
 * Python
 * Initializr
 
