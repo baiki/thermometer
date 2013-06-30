@@ -7,6 +7,7 @@ terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See the COPYING file for more details.
 =end
 
+#%w[sinatra thin data_mapper dm-sqlite-adapter bcrypt].each { |g| require g }
 %w[sinatra thin].each { |g| require g }
 
 configure do

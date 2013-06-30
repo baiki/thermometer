@@ -8,8 +8,7 @@ terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See the COPYING file for more details.
 =end
 
-require 'gruff'
-require 'csv'
+%w[gruff csv].each { |g| require g }
 
 actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
 temp_celcius = Array.new()
