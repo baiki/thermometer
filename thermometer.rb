@@ -35,6 +35,21 @@ helpers do
     actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
     @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
   end
+  
+  def protected!
+    return if authorized?
+    headers['WWW-Authenticate'] = 'Basic realm="Protected Access"'
+    halt 401, "Ouch... not authorized\n"
+  end
+
+  def authorized?
+    @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+    @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['1', '1']
+  end
+  
+  def clear_access
+    #naja, irgendwie was löschen resetten header senden was weiss ich
+  end
 end
 
 SOFTWARE_NAME     = 'Thermometer'
@@ -62,8 +77,15 @@ end
 
 get '/logout' do
   get_readings
+  clear_access
   session.clear
   erb :logout
+end
+
+get '/admin' do
+  protected!
+  get_readings
+  erb :admin
 end
 
 not_found do
