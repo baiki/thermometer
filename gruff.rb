@@ -10,6 +10,9 @@ as published by Sam Hocevar. See the COPYING file for more details.
 
 %w[gruff csv].each { |g| require g }
 
+SOFTWARE_NAME     = 'Gruff Chart Generator'
+SOFTWARE_VERSION  = 'v0.16'
+
 actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
 temp_celcius = Array.new()
 graph_date = Hash.new()
@@ -27,7 +30,7 @@ end
 
 g = Gruff::Line.new(600)
 g.title = 'Temperature History'
-g.data('Temperature in °C', temp_celcius)
+g.data('Temperature in °C and date like MM/DD', temp_celcius)
 #g.data('Something', [1, 2, 4, 8, 16, 32, 64, 128])
 g.labels = graph_date
 g.write('public/temperature_celcius_chart.png')

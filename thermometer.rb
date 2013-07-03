@@ -10,6 +10,9 @@ as published by Sam Hocevar. See the COPYING file for more details.
 #%w[sinatra thin data_mapper dm-sqlite-adapter bcrypt].each { |g| require g }
 %w[sinatra thin].each { |g| require g }
 
+SOFTWARE_NAME     = 'Thermometer'
+SOFTWARE_VERSION  = 'v0.16'
+
 configure do
   set :bind, '0.0.0.0'
   set :port, 1234
@@ -48,9 +51,6 @@ helpers do
     @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['1', '1']
   end
 end
-
-SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.16'
 
 before do
 end
