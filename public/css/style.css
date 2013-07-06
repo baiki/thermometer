@@ -80,8 +80,8 @@ body{ font:16px/24px Helvetica, Helvetica Neue, Arial, sans-serif; }
    =================== */
 
 #header-container{ border-bottom: 5px solid #e44d26; }
-#footer-container{ border-top:    20px solid #e44d26; }
-#main aside      { border-top:    20px solid #e44d26; }
+#footer-container{ border-top:    5px solid #e44d26; }
+#main aside      { border-top:    5px solid #e44d26; }
 
 #header-container,
 #footer-container,
@@ -138,7 +138,7 @@ nav a:hover{
 
 #footer-container footer{
 	color:white;
-	padding:20px 0;
+	padding:10px 0;
 }
 
 /* ===============
