@@ -11,7 +11,7 @@ as published by Sam Hocevar. See the COPYING file for more details.
 %w[sinatra thin].each { |g| require g }
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.16'
+SOFTWARE_VERSION  = 'v0.17'
 
 configure do
   set :bind, '0.0.0.0'
