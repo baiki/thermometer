@@ -16,8 +16,12 @@
               <td>&nbsp;Temperature (degree Celcius)</td>
               <td align="right"><b><%= @temp_celcius %>&#176;C</b>&nbsp;</td>
             </tr>
+            <tr>
+              <td>&nbsp;Total readings</td>
+              <td align="right"><%= @total_readings %>&nbsp;</td>
+            </tr>
           </table>
-          <p>The software will update this web page approximately every 3-5 minutes (sometimes faster). If you want to see older readings, then you can click on <a href="<%= link(:chart) %>">chart</a>.</p>
+          <p>The software will update this web page approximately every 2-5 minutes (sometimes faster). If you want to see older readings, then you can click on <a href="<%= link(:chart) %>">chart</a>.</p>
 				</header>
 				<!--
 				<section>

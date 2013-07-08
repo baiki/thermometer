@@ -72,7 +72,7 @@ body{ font:16px/24px Helvetica, Helvetica Neue, Arial, sans-serif; }
 
 .wrapper{
 	width:90%;
-	margin:0 5%;
+  margin:0 5%;
 }
 
 /* ===================
@@ -138,7 +138,7 @@ nav a:hover{
 
 #footer-container footer{
 	color:white;
-	padding:5px;
+	padding:1px 0;
 }
 
 /* ===============

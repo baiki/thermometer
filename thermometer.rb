@@ -11,17 +11,17 @@ as published by Sam Hocevar. See the COPYING file for more details.
 %w[sinatra thin].each { |g| require g }
 
 SOFTWARE_NAME     = 'Thermometer'
-SOFTWARE_VERSION  = 'v0.17'
+SOFTWARE_VERSION  = 'v0.18'
 
 configure do
   set :bind, '0.0.0.0'
   set :port, 1234
   enable :logging
-  enable :sessions
-#  use Rack::Session::Cookie, :key => 'thermometer.session',
-#                             :path => '/',
-#                             :expire_after => 900,
-#                             :secret => 'hH76Dvj90Lxb157aaPUw'
+#  enable :sessions
+  use Rack::Session::Cookie, :key => 'thermometer.session',
+                             :path => '/',
+                             :expire_after => 900,
+                             :secret => 'hH76Dvj90Lxb157aaPUw'
 end
 
 helpers do
@@ -34,12 +34,17 @@ helpers do
     else "/"
     end
   end
-  
+
   def get_readings
     actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
     @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
   end
-  
+
+  def get_statistics
+    statistics = IO.read('data/gruff-statistics')
+    @total_readings = statistics.chomp
+  end
+
   def protected!
     return if authorized?
     headers['WWW-Authenticate'] = 'Basic realm="Protected Access"'
@@ -64,11 +69,13 @@ end
 
 get '/thermometer' do
   get_readings
+  get_statistics
   erb :thermometer
 end
 
 get '/chart' do
   get_readings
+  get_statistics
   erb :chart
 end
 

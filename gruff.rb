@@ -11,9 +11,10 @@ as published by Sam Hocevar. See the COPYING file for more details.
 %w[gruff csv].each { |g| require g }
 
 SOFTWARE_NAME       = 'Gruff Chart Generator'
-SOFTWARE_VERSION    = 'v0.17'
+SOFTWARE_VERSION    = 'v0.18'
 
-actual_file         = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
+actual_file         = Dir.glob('data/messwerte*').max_by {|f| File.mtime(f)}
+statistics_file     = 'data/gruff-statistics'
 date, time, celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
 start_date          = `head -n 1 #{actual_file}`.rstrip.split(',')[0]
 temp_celcius        = Array.new()
@@ -34,7 +35,7 @@ CSV.foreach(actual_file) do |row|
   if row[0] != date_compare
     tmp_date = row[0][5..-1].split('.').reverse.join('.')
     p tmp_date
-    graph_date.merge!(Hash[i, tmp_date])
+    graph_date.merge!(Hash[i/2, tmp_date])
     date_compare = row[0]
   end
   temp_celcius.push(row[2].to_f)
@@ -52,10 +53,9 @@ g.write('public/temperature_celcius_chart.png')
 
 puts 'Chart is ready.'
 
-#   if not exist dateiname
-#     f = File.new("newfile",  "w+")
-#   else
-#     File.open(gruff.data, 'w') { |file| file.write("your text") }
+statistics = File.open(statistics_file, 'w+')
+statistics.puts(@total_readings)
+statistics.close
 
 puts 'Software ended.'
 exit
