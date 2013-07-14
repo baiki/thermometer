@@ -39,14 +39,16 @@ CSV.foreach(actual_file) do |row|
     date_compare = row[0]
   end
   temp_celcius.push(row[2].to_f)
-#  break if i == 100
+#  break if i == 1000
 end
 
 puts 'Days calculated.'
 puts 'Generating chart...'
 
 g = Gruff::Line.new(600)
-g.title = 'Histroy from ' + start_date.split('.').reverse.join('.') + ' - ' + date.split('.').reverse.join('.') + ', ' + time
+g.title_font_size = 30
+g.legend_font_size = 22
+g.title = 'History from ' + start_date.split('.').reverse.join('.') + ' - ' + date.split('.').reverse.join('.') + ', ' + time
 g.data('Temperature in °C, date as DD.MM and time as UTC+02:00', temp_celcius)
 g.labels = graph_date
 g.write('public/temperature_celcius_chart.png')
