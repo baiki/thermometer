@@ -22,19 +22,19 @@ graph_date          = Hash.new()
 date_compare        = ''
 i                   = 0
 
-puts 'Starting: ' + SOFTWARE_NAME + ' ' + SOFTWARE_VERSION
-puts 'According to the file...'
+puts SOFTWARE_NAME + ' ' + SOFTWARE_VERSION
 puts 'Start date: ' + start_date
 puts 'End date  : ' + date
-puts 'Starting calculations...'
+print 'Starting calculations...'
 
 CSV.foreach(actual_file) do |row|
+  next if row[2].to_f >= 38.0
   i += 1
   @total_readings = i
   next if i.odd?
   if row[0] != date_compare
-    tmp_date = row[0][5..-1].split('.').reverse.join('.')
-    p tmp_date
+    tmp_date = row[0][8..-1] #[5..-1].split('.').reverse.join('.')
+    print '.'
     graph_date.merge!(Hash[i/2, tmp_date])
     date_compare = row[0]
   end
@@ -42,18 +42,19 @@ CSV.foreach(actual_file) do |row|
 #  break if i == 1000
 end
 
-puts 'Days calculated.'
-puts 'Generating chart...'
+puts ' Done.'
+print 'Generating chart...'
 
 g = Gruff::Line.new(600)
+g.hide_dots = true
 g.title_font_size = 30
 g.legend_font_size = 22
 g.title = 'History from ' + start_date.split('.').reverse.join('.') + ' - ' + date.split('.').reverse.join('.') + ', ' + time
-g.data('Temperature in °C, date as DD.MM and time as UTC+02:00', temp_celcius)
+g.data('Temperature in °C, date as DD and time as UTC+02:00', temp_celcius)
 g.labels = graph_date
 g.write('public/temperature_celcius_chart.png')
 
-puts 'Chart is ready.'
+puts ' Done.'
 
 statistics = File.open(statistics_file, 'w+')
 statistics.puts(@total_readings)
