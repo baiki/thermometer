@@ -38,6 +38,7 @@ helpers do
   def get_readings
     actual_file = Dir.glob("data/messwerte*").max_by {|f| File.mtime(f)}
     @temp_date, @temp_time, @temp_celcius = `tail -n 1 #{actual_file}`.rstrip.split(',')
+    @cpu_temp = (`cat /sys/class/thermal/thermal_zone0/temp`.to_f / 1000).round(1)
   end
 
   def get_statistics
