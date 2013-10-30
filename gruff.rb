@@ -28,7 +28,7 @@ puts 'End date  : ' + date
 print 'Starting calculations...'
 
 CSV.foreach(actual_file) do |row|
-  next if row[2].to_f >= 38.0
+  next if row[2].to_f >= 36.9
   i += 1
   @total_readings = i
   next if i.odd?
@@ -50,7 +50,7 @@ g.hide_dots = true
 g.title_font_size = 30
 g.legend_font_size = 22
 g.title = 'History from ' + start_date.split('.').reverse.join('.') + ' - ' + date.split('.').reverse.join('.') + ', ' + time
-g.data('Temperature in °C, date as DD and time as UTC+02:00', temp_celcius)
+g.data('Temperature in °C, date as DD and time as UTC+01:00', temp_celcius)
 g.labels = graph_date
 g.write('public/temperature_celcius_chart.png')
 
